@@ -4,28 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Puzzle Art Studios</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+  
   <style>
     *{
       margin:0;
       padding:0;
       box-sizing:border-box;
     }
-
     body{
       font-family:'Poppins', sans-serif;
       background:#ffffff;
       color:#111;
       overflow-x:hidden;
     }
-
-    a{
-      text-decoration:none;
-    }
-
+    a{text-decoration:none;}
+    
     .container{
       width:90%;
       max-width:1200px;
@@ -33,168 +28,168 @@
     }
 
     /* NAVBAR */
-
     nav{
       position:fixed;
       top:0;
       width:100%;
       z-index:999;
-      background:rgba(255,255,255,0.92);
+      background:rgba(255,255,255,0.95);
       backdrop-filter:blur(10px);
       box-shadow:0 2px 10px rgba(0,0,0,0.05);
     }
-
     .nav-wrapper{
       display:flex;
       justify-content:space-between;
       align-items:center;
       padding:18px 0;
     }
-
     .logo{
-      font-size:1.5rem;
+      font-size:1.6rem;
       font-weight:700;
       color:#111;
     }
-
     .nav-links{
       display:flex;
       gap:25px;
       align-items:center;
     }
-
     .nav-links a{
       color:#111;
       font-weight:500;
       transition:0.3s;
     }
-
     .nav-links a:hover{
       color:#6c4cff;
     }
-
     .btn{
-      padding:12px 22px;
+      padding:12px 24px;
       border-radius:50px;
       background:#6c4cff;
       color:#fff !important;
+      font-weight:500;
       transition:0.3s;
       display:inline-block;
     }
-
     .btn:hover{
       background:#4f33d8;
-      transform:translateY(-2px);
+      transform:translateY(-3px);
     }
 
-    /* HERO */
-
+    /* ==================== HERO SLIDER ==================== */
     .hero{
       height:100vh;
       position:relative;
       overflow:hidden;
     }
-
     .slider{
-      height:100%;
-      width:100%;
       position:relative;
+      width:100%;
+      height:100%;
     }
-
     .slide{
       position:absolute;
+      inset:0;
+      opacity:0;
+      visibility:hidden;
+      transition:opacity 0.8s ease-in-out;
+    }
+    .slide.active{
+      opacity:1;
+      visibility:visible;
+      z-index:2;
+    }
+    .slide img{
       width:100%;
       height:100%;
-      background-size:cover;
-      background-position:center;
-      opacity:0;
-      animation:fade 20s infinite;
-      cursor:pointer;
-      transform:scale(1.05);
+      object-fit:cover;
+      object-position:center;
     }
-
     .slide::after{
       content:"";
       position:absolute;
       inset:0;
       background:rgba(0,0,0,0.45);
+      z-index:1;
     }
-
     .slide-content{
       position:absolute;
-      z-index:2;
+      z-index:3;
       color:white;
       bottom:15%;
       left:8%;
       max-width:650px;
     }
-
     .slide-content h1{
       font-size:4rem;
       line-height:1.1;
       margin-bottom:20px;
     }
-
     .slide-content p{
-      font-size:1.1rem;
+      font-size:1.15rem;
       line-height:1.8;
       margin-bottom:30px;
     }
 
-    .slide:nth-child(1){
-      background-image:url('slide1.jpg');
-      animation-delay:0s;
+    /* Slider Dots */
+    .slider-dots{
+      position:absolute;
+      bottom:40px;
+      left:50%;
+      transform:translateX(-50%);
+      display:flex;
+      gap:12px;
+      z-index:10;
+    }
+    .slider-dots .dot{
+      width:13px;
+      height:13px;
+      background:rgba(255,255,255,0.6);
+      border-radius:50%;
+      cursor:pointer;
+      transition:0.3s;
+    }
+    .slider-dots .dot.active{
+      background:#6c4cff;
+      transform:scale(1.4);
     }
 
-    .slide:nth-child(2){
-      background-image:url('slide2.jpg');
-      animation-delay:5s;
+    /* Slider Arrows */
+    .slider-arrow{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      background:rgba(0,0,0,0.4);
+      color:white;
+      border:none;
+      width:55px;
+      height:55px;
+      border-radius:50%;
+      font-size:28px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      z-index:10;
+      transition:0.3s;
     }
-
-    .slide:nth-child(3){
-      background-image:url('slide3.jpg');
-      animation-delay:10s;
+    .slider-arrow:hover{
+      background:#6c4cff;
     }
+    .prev{ left:30px; }
+    .next{ right:30px; }
 
-    .slide:nth-child(4){
-      background-image:url('slide4.jpg');
-      animation-delay:15s;
-    }
-
-    @keyframes fade{
-      0%{
-        opacity:0;
-      }
-      5%{
-        opacity:1;
-      }
-      25%{
-        opacity:1;
-      }
-      30%{
-        opacity:0;
-      }
-      100%{
-        opacity:0;
-      }
-    }
-
-    /* SECTION */
-
+    /* ==================== OTHER SECTIONS ==================== */
     section{
       padding:100px 0;
     }
-
     .section-title{
       text-align:center;
       margin-bottom:60px;
     }
-
     .section-title h2{
       font-size:2.5rem;
       margin-bottom:15px;
     }
-
     .section-title p{
       color:#666;
       max-width:700px;
@@ -202,14 +197,11 @@
       line-height:1.8;
     }
 
-    /* FEATURES */
-
     .features{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
       gap:25px;
     }
-
     .feature-card{
       background:#fff;
       padding:35px;
@@ -217,40 +209,28 @@
       box-shadow:0 10px 30px rgba(0,0,0,0.06);
       transition:0.3s;
     }
-
     .feature-card:hover{
       transform:translateY(-8px);
     }
-
     .feature-card h3{
       margin:20px 0 15px;
+      font-size:1.4rem;
     }
-
-    .feature-card p{
-      color:#666;
-      line-height:1.8;
-    }
-
-    /* RATINGS */
 
     .ratings{
       background:#f8f8f8;
     }
-
     .rating-box{
       text-align:center;
       margin-bottom:50px;
     }
-
     .rating-box h1{
       font-size:5rem;
       color:#6c4cff;
     }
-
     .stars{
-      font-size:1.5rem;
+      font-size:1.6rem;
       color:gold;
-      margin:10px 0;
     }
 
     .reviews{
@@ -258,7 +238,6 @@
       grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
       gap:25px;
     }
-
     .review-card{
       background:white;
       padding:30px;
@@ -266,49 +245,27 @@
       box-shadow:0 8px 25px rgba(0,0,0,0.05);
     }
 
-    .review-card p{
-      line-height:1.8;
-      color:#555;
-      margin-bottom:20px;
-    }
-
-    .review-card h4{
-      color:#111;
-    }
-
-    /* CONTACT */
-
     .contact-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
       gap:50px;
       align-items:center;
     }
-
     form{
       display:flex;
       flex-direction:column;
       gap:20px;
     }
-
-    input,
-    textarea{
+    input, textarea{
       padding:18px;
       border-radius:15px;
       border:1px solid #ddd;
       font-family:'Poppins', sans-serif;
       width:100%;
     }
-
     textarea{
       min-height:160px;
       resize:none;
-    }
-
-    button{
-      border:none;
-      cursor:pointer;
-      font-size:1rem;
     }
 
     .contact-info{
@@ -318,369 +275,249 @@
       border-radius:30px;
     }
 
-    .contact-info h2{
-      margin-bottom:20px;
-      font-size:2rem;
-    }
-
-    .contact-info p{
-      line-height:1.8;
-      margin-bottom:20px;
-    }
-
-    /* FOOTER */
-
     footer{
       background:#111;
       color:white;
       text-align:center;
-      padding:30px 20px;
+      padding:40px 20px;
     }
 
-    footer a{
-      color:#9d8cff;
-    }
-
-    /* MOBILE */
-
+    /* Mobile */
     @media(max-width:900px){
-
-      .slide-content h1{
-        font-size:2.5rem;
-      }
-
-      .contact-grid{
-        grid-template-columns:1fr;
-      }
-
-      .nav-links{
-        gap:12px;
-        font-size:0.9rem;
-      }
-
+      .slide-content h1{font-size:2.8rem;}
+      .contact-grid{grid-template-columns:1fr;}
     }
-
     @media(max-width:600px){
-
-      .nav-wrapper{
-        flex-direction:column;
-        gap:15px;
-      }
-
       .slide-content{
         left:6%;
         right:6%;
         bottom:10%;
       }
-
-      .slide-content h1{
-        font-size:2rem;
-      }
-
-      .slide-content p{
-        font-size:0.95rem;
-      }
-
-      .section-title h2{
-        font-size:2rem;
-      }
-
-      .btn{
-        padding:10px 18px;
-      }
-
+      .slide-content h1{font-size:2.2rem;}
+      .nav-wrapper{flex-direction:column; gap:15px;}
     }
-
   </style>
 </head>
 <body>
 
   <!-- NAV -->
-
   <nav>
     <div class="container nav-wrapper">
       <div class="logo">Puzzle Art Studios</div>
-
       <div class="nav-links">
         <a href="#reviews">Reviews</a>
         <a href="#contact">Contact</a>
-
-        <a
-          class="btn"
-          href="https://wa.me/2348135181324"
-          target="_blank"
-        >
+        <a class="btn" href="https://wa.me/2348135181324" target="_blank">
           Contact Us
         </a>
       </div>
     </div>
   </nav>
 
-  <!-- HERO -->
-
+  <!-- HERO SLIDER -->
   <section class="hero">
+    <div class="slider" id="heroSlider">
 
-    <div class="slider">
-
-      <!-- SLIDE 1 -->
-      <a href="https://your-link-1.com" class="slide">
+      <!-- Slide 1 -->
+      <a href="https://paystack.shop/pay/jf6433n2mg" class="slide active" target="_blank">
+        <img src="slide1.jpg" alt="Feel Every Sound - Premium Studio Equipment">
         <div class="slide-content">
-          <h1>Feel Every Sound</h1>
-          <p>
-            Premium studio equipment, keyboards, monitors &
-            creative music tools for artists and producers.
-          </p>
-
-          <span class="btn">Explore Studio</span>
+          <h1>Professional Microphone</h1>
+          <p>Limited Time Deal, get an uprage for that premium studio experience.</p>
+          <span class="btn">Buy Now</span>
         </div>
       </a>
 
-      <!-- SLIDE 2 -->
-      <a href="https://your-link-2.com" class="slide">
+      <!-- Slide 2 -->
+      <a href="https://your-link-2.com" class="slide" target="_blank">
+        <img src="slide2.jpg" alt="Build Your Sound">
         <div class="slide-content">
           <h1>Build Your Sound</h1>
-          <p>
-            Soulful music culture blended with modern production energy.
-          </p>
-
+          <p>Soulful music culture blended with modern production energy.</p>
           <span class="btn">View Collection</span>
         </div>
       </a>
 
-      <!-- SLIDE 3 -->
-      <a href="https://your-link-3.com" class="slide">
+      <!-- Slide 3 -->
+      <a href="https://paystack.shop/pay/jf6433n2mg" class="slide" target="_blank">
+        <img src="slide3.jpg" alt="Creative Music Space">
         <div class="slide-content">
-          <h1>Creative Music Space</h1>
-          <p>
-            Youthful vibes, sound engineering and premium studio experiences.
-          </p>
-
+          <h1>Professional Microphone</h1>
+          <p>Limited Time Deal, get an uprage for that premium studio experience.</p>
           <span class="btn">Discover More</span>
         </div>
       </a>
 
-      <!-- SLIDE 4 -->
-      <a href="https://your-link-4.com" class="slide">
+      <!-- Slide 4 -->
+      <a href="https://your-link-4.com" class="slide" target="_blank">
+        <img src="slide4.jpg" alt="Sound Beyond Limits">
         <div class="slide-content">
           <h1>Sound Beyond Limits</h1>
-          <p>
-            Experience next-level audio equipment and music inspiration.
-          </p>
-
+          <p>Experience next-level audio equipment and music inspiration.</p>
           <span class="btn">Get Started</span>
         </div>
       </a>
 
-    </div>
+      <!-- Dots -->
+      <div class="slider-dots" id="sliderDots"></div>
 
+      <!-- Arrows -->
+      <button class="slider-arrow prev" id="prevBtn">‹</button>
+      <button class="slider-arrow next" id="nextBtn">›</button>
+    </div>
   </section>
 
   <!-- FEATURES -->
-
   <section>
     <div class="container">
-
       <div class="section-title">
         <h2>Why Artists Love Us</h2>
-        <p>
-          Puzzle Art Studios brings together music, technology,
-          creativity and premium sound experiences.
-        </p>
+        <p>Puzzle Art Studios brings together music, technology, creativity and premium sound experiences.</p>
       </div>
-
       <div class="features">
-
         <div class="feature-card">
           <h3>🎹 Premium Keyboards</h3>
-          <p>
-            Discover performance keyboards and studio-ready instruments.
-          </p>
+          <p>Discover performance keyboards and studio-ready instruments.</p>
         </div>
-
         <div class="feature-card">
           <h3>🎧 Studio Monitors</h3>
-          <p>
-            Exceptional clarity and balanced audio for music production.
-          </p>
+          <p>Exceptional clarity and balanced audio for music production.</p>
         </div>
-
         <div class="feature-card">
           <h3>🎵 Sound Culture</h3>
-          <p>
-            Youthful creative scenery inspired by modern music culture.
-          </p>
+          <p>Youthful creative scenery inspired by modern music culture.</p>
         </div>
-
         <div class="feature-card">
           <h3>🔥 Producer Freebies</h3>
-          <p>
-            Access free sounds, samples and creative inspiration tools.
-          </p>
-
+          <p>Access free sounds, samples and creative inspiration tools.</p>
           <br>
-
-          <a
-            href="https://cymatics.fm/pages/free-download-vault?srsltid=AfmBOoqqUnCPaoNg1L2s13Phn_EfuSby5JoBciHrcnAhlf2Fs2qOdt-h"
-            target="_blank"
-            class="btn"
-          >
+          <a href="https://cymatics.fm/pages/free-download-vault" target="_blank" class="btn">
             Explore Sounds & Freebies
           </a>
-
         </div>
-
       </div>
-
     </div>
   </section>
 
   <!-- REVIEWS -->
-
   <section class="ratings" id="reviews">
-
     <div class="container">
-
       <div class="section-title">
         <h2>Customer Reviews</h2>
-        <p>
-          Trusted by producers, musicians and creators across Lagos.
-        </p>
+        <p>Trusted by producers, musicians and creators across Lagos.</p>
       </div>
-
       <div class="rating-box">
         <h1>4.6</h1>
-
-        <div class="stars">
-          ★★★★★
-        </div>
-
+        <div class="stars">★★★★★</div>
         <p>Based on 212 Reviews</p>
       </div>
-
       <div class="reviews">
-
         <div class="review-card">
-          <p>
-            "Fantastic selection of keyboards! Found the perfect one for my studio."
-          </p>
-
+          <p>"Fantastic selection of keyboards! Found the perfect one for my studio."</p>
           <h4>— Music Producer</h4>
         </div>
-
         <div class="review-card">
-          <p>
-            "Studio monitors with exceptional clarity and accuracy. Perfect for production."
-          </p>
-
+          <p>"Studio monitors with exceptional clarity and accuracy. Perfect for production."</p>
           <h4>— Recording Artist</h4>
         </div>
-
         <div class="review-card">
-          <p>
-            "Professional customer service and very inspiring creative atmosphere."
-          </p>
-
+          <p>"Professional customer service and very inspiring creative atmosphere."</p>
           <h4>— Audio Engineer</h4>
         </div>
-
       </div>
-
     </div>
-
   </section>
 
   <!-- CONTACT -->
-
   <section id="contact">
-
     <div class="container">
-
       <div class="section-title">
         <h2>Let's Build Sound Together</h2>
-        <p>
-          Send enquiries, bookings or partnership requests directly to us.
-        </p>
+        <p>Send enquiries, bookings or partnership requests directly to us.</p>
       </div>
-
       <div class="contact-grid">
-
         <div>
-
-          <form
-            action="mailto:sound@puzzleartstudios.com"
-            method="POST"
-            enctype="text/plain"
-          >
-
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              required
-            >
-
-            <input
-              type="email"
-              name="email"
-              placeholder="Your Email"
-              required
-            >
-
-            <textarea
-              name="message"
-              placeholder="Write your enquiry..."
-              required
-            ></textarea>
-
-            <button type="submit" class="btn">
-              Send Enquiry
-            </button>
-
+          <form action="mailto:sound@puzzleartstudios.com" method="POST" enctype="text/plain">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Write your enquiry..." required></textarea>
+            <button type="submit" class="btn">Send Enquiry</button>
           </form>
-
         </div>
-
         <div class="contact-info">
-
           <h2>Puzzle Art Studios</h2>
-
-          <p>
-            NO. 21, AWUDU EKPEKHA BLVD ST, LEKKI, LAGOS
-          </p>
-
-          <p>
-            📞 +234 813 518 1324
-          </p>
-
-          <p>
-            ✉️ sound@puzzleartstudios.com
-          </p>
-
-          <a
-            href="https://wa.me/2348135181324"
-            class="btn"
-            target="_blank"
-          >
-            Chat on WhatsApp
-          </a>
-
+          <p>NO. 21, AWUDU EKPEKHA BLVD ST, LEKKI, LAGOS</p>
+          <p>📞 +234 813 518 1324</p>
+          <p>✉️ sound@puzzleartstudios.com</p>
+          <a href="https://wa.me/2348135181324" class="btn" target="_blank">Chat on WhatsApp</a>
         </div>
-
       </div>
-
     </div>
-
   </section>
 
   <!-- FOOTER -->
-
   <footer>
-
-    <p>
-      © 2026 Puzzle Art Studios — Built for Music Creators.
-    </p>
-
+    <p>© 2026 Puzzle Art Studios — Built for Music Creators.</p>
   </footer>
 
+  <!-- JavaScript for Slider -->
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dotsContainer = document.getElementById('sliderDots');
+
+    // Create dots
+    slides.forEach((_, index) => {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (index === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToSlide(index));
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll('.dot');
+
+    function goToSlide(n) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      dots.forEach(dot => dot.classList.remove('active'));
+      
+      slides[n].classList.add('active');
+      dots[n].classList.add('active');
+      currentSlide = n;
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      goToSlide(currentSlide);
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      goToSlide(currentSlide);
+    }
+
+    // Auto-play
+    let slideInterval = setInterval(nextSlide, 5000);
+
+    // Arrow controls
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      clearInterval(slideInterval);
+      nextSlide();
+      slideInterval = setInterval(nextSlide, 5000);
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      clearInterval(slideInterval);
+      prevSlide();
+      slideInterval = setInterval(nextSlide, 5000);
+    });
+
+    // Pause on hover
+    const sliderElement = document.getElementById('heroSlider');
+    sliderElement.addEventListener('mouseenter', () => clearInterval(slideInterval));
+    sliderElement.addEventListener('mouseleave', () => {
+      slideInterval = setInterval(nextSlide, 5000);
+    });
+  </script>
 </body>
 </html>
